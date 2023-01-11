@@ -93,7 +93,7 @@ export class ProductListComponent implements OnInit {
 
   processResult() {
     return (data) => {
-      this.products = data._embededded.products;
+      this.products = data._embedded.products;
       this.thePageNumber = data.page.number + 1;
       this.thePageSize = data.page.size;
       this.theTotalElements = data.page.totalElements;
