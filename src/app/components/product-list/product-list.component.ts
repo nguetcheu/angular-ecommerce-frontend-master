@@ -1,3 +1,5 @@
+import { CartService } from './../../services/cart.service';
+import { CartItem } from './../../common/cart-item';
 import { Product } from './../../common/product';
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,7 +11,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-
   products: Product[] = [];
   currentCategoryId: number = 1;
   previousCategoryId: number = 1;
@@ -24,7 +25,8 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cartService: CartService
   ) {}
 
   ngOnInit() {
@@ -123,9 +125,13 @@ export class ProductListComponent implements OnInit {
     this.listProducts();
   }
 
-  addToCart(theProduct: Product){
-    console.log(`Adding to cart: ${theProduct.name}, ${theProduct.unit_price} `);
+  addToCart(theProduct: Product) {
+    console.log(
+      `Adding to cart: ${theProduct.name}, ${theProduct.unit_price} `
+    );
 
     // TODO ... do the real work
+    const theCartItem = new CartItem(theProduct);
+    this.cartService.addToCart(theCartItem);
   }
 }
