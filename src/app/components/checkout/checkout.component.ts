@@ -25,7 +25,7 @@ export class CheckoutComponent implements OnInit {
         street: [''],
         city: [''],
         state: [''],
-        zipcode: [''],
+        zipCode: [''],
       }),
       // Création du group des informations de billingAdress
       billingAddress: this.FormBuilder.group({
@@ -33,7 +33,7 @@ export class CheckoutComponent implements OnInit {
         street: [''],
         city: [''],
         state: [''],
-        zipcode: [''],
+        zipCode: [''],
       }),
       // Création du group des informations de la carte Bancaire
       creditCard: this.FormBuilder.group({
@@ -45,6 +45,14 @@ export class CheckoutComponent implements OnInit {
         expirationYear: [''],
       }),
     });
+  }
+
+  copyShippingAddressToBillingAddress(event) {
+    if (event.target.checked) {
+      this.checkoutFormGroup.controls.billingAddress.setValue(
+        this.checkoutFormGroup.controls.shippingAddress.value
+      );
+    }
   }
 
   onSubmit() {
