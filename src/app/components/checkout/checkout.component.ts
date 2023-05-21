@@ -13,17 +13,45 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkoutFormGroup = this.FormBuilder.group({
-      // Création du group des informations du client
+      // Création du group des informations du customer
       customer: this.FormBuilder.group({
         firstName: [''],
         lastName: [''],
         email: [''],
       }),
+      // Création du group des informations de shippingAdress
+      shippingAddress: this.FormBuilder.group({
+        country: [''],
+        street: [''],
+        city: [''],
+        state: [''],
+        zipcode: [''],
+      }),
+      // Création du group des informations de billingAdress
+      billingAddress: this.FormBuilder.group({
+        country: [''],
+        street: [''],
+        city: [''],
+        state: [''],
+        zipcode: [''],
+      }),
+      // Création du group des informations de la carte Bancaire
+      creditCard: this.FormBuilder.group({
+        cardType: [''],
+        nameOnCard: [''],
+        cardNumber: [''],
+        securityCode: [''],
+        expirationMonth: [''],
+        expirationYear: [''],
+      }),
     });
   }
 
   onSubmit() {
-    console.log('Handling the submit button');
+    console.log('Click sur le bouton de validation');
     console.log(this.checkoutFormGroup.get('customer').value);
+    console.log(
+      " L'adresse email est " + this.checkoutFormGroup.get('customer').value
+    );
   }
 }
