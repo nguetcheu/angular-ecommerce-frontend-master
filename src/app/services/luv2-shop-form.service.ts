@@ -7,6 +7,7 @@ import { Observable, of } from 'rxjs';
 export class Luv2ShopFormService {
   constructor() {}
 
+  // Création des mois et année pour la gestion de la carte bancaire
   getCreditCardMonths(startMonth: number): Observable<number[]> {
     let data: number[] = [];
 
