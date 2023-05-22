@@ -22,10 +22,10 @@ export class Luv2ShopFormService {
 
   getStates(theCountryCode): Observable<State[]> {
     // search url
-    const searchstateUrl = `${this.stateUrl}/search/findByCountryCode?code=${theCountryCode}`;
+    const searchStatesUrl = `${this.stateUrl}/search/findByCountryCode?code=${theCountryCode}`;
 
     return this.httpClient
-      .get<GetResponseStates>(searchstateUrl)
+      .get<GetResponseStates>(searchStatesUrl)
       .pipe(map((response) => response._embedded.states));
   }
 
@@ -40,7 +40,7 @@ export class Luv2ShopFormService {
     return of(data);
   }
 
-  getCreditCardYear(): Observable<number[]> {
+  getCreditCardYears(): Observable<number[]> {
     let data: number[] = [];
 
     const startYear: number = new Date().getFullYear();
