@@ -21,9 +21,6 @@ export class CheckoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const startMonth = new Date().getMonth() + 1;
-    console.log(startMonth);
-
     this.checkoutFormGroup = this.FormBuilder.group({
       // Création du group des informations du customer
       customer: this.FormBuilder.group({
@@ -57,6 +54,11 @@ export class CheckoutComponent implements OnInit {
         expirationYear: [''],
       }),
     });
+
+    // populate credit card months
+    const startMonth = new Date().getMonth() + 1;
+    console.log('startMonth' + startMonth);
+
     this.luv2shopFormService
       .getCreditCardMonths(startMonth)
       .subscribe((data) => {
@@ -64,6 +66,7 @@ export class CheckoutComponent implements OnInit {
         this.creditCardMonths = data;
       });
 
+    // populate credit card years
     this.luv2shopFormService.getCreditCardYear().subscribe((data) => {
       console.log('Retrieved credit card month ' + JSON.stringify(data));
       this.creditCardYears = data;
