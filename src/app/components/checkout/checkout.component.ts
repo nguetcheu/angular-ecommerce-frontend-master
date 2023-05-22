@@ -102,6 +102,16 @@ export class CheckoutComponent implements OnInit {
     console.log(
       " L'adresse email est " + this.checkoutFormGroup.get('customer').value
     );
+
+    console.log(
+      'The shipping address country is ' +
+        this.checkoutFormGroup.get('shippingAddress').value.country.name
+    );
+
+    console.log(
+      'The shipping address state is ' +
+        this.checkoutFormGroup.get('shippingAddress').value.state.name
+    );
   }
 
   handleMonthsAndYears() {
