@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
 import { Luv2ShopFormService } from 'src/app/services/luv2-shop-form.service';
@@ -31,9 +36,18 @@ export class CheckoutComponent implements OnInit {
     this.checkoutFormGroup = this.FormBuilder.group({
       // Création du group des informations du customer
       customer: this.FormBuilder.group({
-        firstName: [''],
-        lastName: [''],
-        email: [''],
+        firstName: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+        ]),
+        lastName: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+        ]),
+        email: new FormControl('', [
+          Validators.required,
+          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+        ]),
       }),
       // Création du group des informations de shippingAdress
       shippingAddress: this.FormBuilder.group({
@@ -86,6 +100,18 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+  get firstName() {
+    return this.checkoutFormGroup.get('customer.firstName');
+  }
+
+  get lastName() {
+    return this.checkoutFormGroup.get('customer.lastName');
+  }
+
+  get email() {
+    return this.checkoutFormGroup.get('customer.email');
+  }
+
   copyShippingAddressToBillingAddress(event) {
     if (event.target.checked) {
       this.checkoutFormGroup.controls.billingAddress.setValue(
@@ -106,6 +132,11 @@ export class CheckoutComponent implements OnInit {
 
   onSubmit() {
     console.log('Click sur le bouton de validation');
+
+    if (this.checkoutFormGroup.invalid) {
+      this.checkoutFormGroup.markAllAsTouched();
+    }
+
     console.log(this.checkoutFormGroup.get('customer').value);
     console.log(
       " L'adresse email est " + this.checkoutFormGroup.get('customer').value
