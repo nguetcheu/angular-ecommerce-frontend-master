@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
+import { CartService } from 'src/app/services/cart.service';
 import { Luv2ShopFormService } from 'src/app/services/luv2-shop-form.service';
 import { Luv2ShopValidators } from 'src/app/validators/luv2-shop-validators';
 
@@ -30,7 +31,8 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private FormBuilder: FormBuilder,
-    private luv2shopFormService: Luv2ShopFormService
+    private luv2shopFormService: Luv2ShopFormService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
