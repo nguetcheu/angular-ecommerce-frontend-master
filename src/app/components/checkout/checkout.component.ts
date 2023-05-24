@@ -115,6 +115,8 @@ export class CheckoutComponent implements OnInit {
       }),
     });
 
+    this.reviewCartDetails();
+
     // populate credit card months
     const startMonth = new Date().getMonth() + 1;
     console.log('startMonth' + startMonth);
@@ -137,6 +139,16 @@ export class CheckoutComponent implements OnInit {
       console.log('Retrieved countries: ' + JSON.stringify(data));
       this.countries = data;
     });
+  }
+
+  reviewCartDetails() {
+    this.cartService.totalQuantity.subscribe(
+      (totalQuantity) => (this.totalQuantity = totalQuantity)
+    );
+
+    this.cartService.totalPrice.subscribe(
+      (totalPrice) => (this.totalPrice = totalPrice)
+    );
   }
 
   get firstName() {
