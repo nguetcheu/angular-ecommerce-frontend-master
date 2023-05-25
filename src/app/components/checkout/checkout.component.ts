@@ -235,22 +235,8 @@ export class CheckoutComponent implements OnInit {
 
     if (this.checkoutFormGroup.invalid) {
       this.checkoutFormGroup.markAllAsTouched();
+      return;
     }
-
-    console.log(this.checkoutFormGroup.get('customer').value);
-    console.log(
-      " L'adresse email est " + this.checkoutFormGroup.get('customer').value
-    );
-
-    console.log(
-      'The shipping address country is ' +
-        this.checkoutFormGroup.get('shippingAddress').value.country.name
-    );
-
-    console.log(
-      'The shipping address state is ' +
-        this.checkoutFormGroup.get('shippingAddress').value.state.name
-    );
   }
 
   resetCart() {
@@ -258,12 +244,12 @@ export class CheckoutComponent implements OnInit {
     this.cartService.cartItems = [];
     this.cartService.totalPrice.next(0);
     this.cartService.totalQuantity.next(0);
-    
+
     // reset the form
     this.checkoutFormGroup.reset();
 
     // navigate back to the products page
-    this.router.navigateByUrl("/products");
+    this.router.navigateByUrl('/products');
   }
 
   handleMonthsAndYears() {
