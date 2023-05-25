@@ -9,7 +9,9 @@ import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
 import { CartService } from 'src/app/services/cart.service';
 import { Luv2ShopFormService } from 'src/app/services/luv2-shop-form.service';
+import { CheckoutService } from 'src/app/services/checkout.service';
 import { Luv2ShopValidators } from 'src/app/validators/luv2-shop-validators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -32,7 +34,9 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private FormBuilder: FormBuilder,
     private luv2shopFormService: Luv2ShopFormService,
-    private cartService: CartService
+    private cartService: CartService,
+    private checkoutService: CheckoutService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -247,6 +251,19 @@ export class CheckoutComponent implements OnInit {
       'The shipping address state is ' +
         this.checkoutFormGroup.get('shippingAddress').value.state.name
     );
+  }
+
+  resetCart() {
+    // reset cart data
+    this.cartService.cartItems = [];
+    this.cartService.totalPrice.next(0);
+    this.cartService.totalQuantity.next(0);
+    
+    // reset the form
+    this.checkoutFormGroup.reset();
+
+    // navigate back to the products page
+    this.router.navigateByUrl("/products");
   }
 
   handleMonthsAndYears() {
