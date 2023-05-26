@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 /* Modules du projet */
 import { HttpClientModule } from '@angular/common/http';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, Router } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -22,6 +22,25 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { LoginComponent } from './components/login/login.component';
 import { LoginStatusComponent } from './components/login-status/login-status.component';
 
+import {
+  OKTA_CONFIG,
+  OktaAuthModule,
+  OktaCallbackComponent,
+} from '@okta/okta-angular';
+
+import myAppConfig from './config/my-app-config';
+
+const oktaConfig = Object.assign(
+  {
+    onAuthRequired: (injector) => {
+      const router = injector.get(Router);
+
+      // Redirect the user to your custom login page
+      router.navigate(['/login']);
+    },
+  },
+  myAppConfig.oidc
+);
 
 /*Routes */
 const routes: Routes = [
@@ -54,9 +73,9 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes),
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [ProductService],
+  providers: [ProductService, { provide: OKTA_CONFIG, useValue: oktaConfig }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
