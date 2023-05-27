@@ -32,7 +32,7 @@ import myAppConfig from './config/my-app-config';
 
 const oktaConfig = Object.assign(
   {
-    onAuthRequired: (injector) => {
+    onAuthRequired: (oktaAuth: any, injector) => {
       const router = injector.get(Router);
 
       // Redirect the user to your custom login page
@@ -77,6 +77,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     NgbModule,
     ReactiveFormsModule,
+    OktaAuthModule,
   ],
   providers: [ProductService, { provide: OKTA_CONFIG, useValue: oktaConfig }],
   bootstrap: [AppComponent],
