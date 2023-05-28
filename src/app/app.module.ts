@@ -5,7 +5,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire';
 
 /* Service */
 import { ProductService } from './services/product.service';
@@ -21,42 +22,26 @@ import { CartDetailsComponent } from './components/cart-details/cart-details.com
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { LoginComponent } from './components/login/login.component';
 import { LoginStatusComponent } from './components/login-status/login-status.component';
-
-import {
-  OKTA_CONFIG,
-  OktaAuthModule,
-  OktaCallbackComponent,
-} from '@okta/okta-angular';
-
-import myAppConfig from './config/my-app-config';
-
-const oktaConfig = Object.assign(
-  {
-    onAuthRequired: (oktaAuth: any, injector) => {
-      const router = injector.get(Router);
-
-      // Redirect the user to your custom login page
-      router.navigate(['/login']);
-    },
-  },
-  myAppConfig.oidc
-);
+import { SignupComponent } from './components/signup/signup.component';
 
 /*Routes */
 const routes: Routes = [
-  { path: 'login/callback', component: OktaCallbackComponent },
   { path: 'login', component: LoginComponent },
-
+  { path: 'signup', component: SignupComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'cart-details', component: CartDetailsComponent },
   { path: 'products/:id', component: ProductDetailsComponent },
   { path: 'search/:keyword', component: ProductListComponent },
   { path: 'category/:id', component: ProductListComponent },
   { path: 'category', component: ProductListComponent },
-  { path: 'products', component: ProductListComponent },
+  {
+    path: 'products',
+    component: ProductListComponent,
+  },
   { path: '', redirectTo: '/products', pathMatch: 'full' },
   { path: '**', redirectTo: '/products', pathMatch: 'full' },
 ];
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -70,16 +55,18 @@ const routes: Routes = [
     CheckoutComponent,
     LoginComponent,
     LoginStatusComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
     NgbModule,
+    FormsModule,
     ReactiveFormsModule,
-    OktaAuthModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
-  providers: [ProductService, { provide: OKTA_CONFIG, useValue: oktaConfig }],
+  providers: [ProductService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

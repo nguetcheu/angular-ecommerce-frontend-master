@@ -1,0 +1,25 @@
+.form-area {
+  background: #f6f5f5;
+  position: relative;
+  margin-bottom: 45px;
+  padding: 50px 20px;
+  border: 3px solid #ccc;
+}
+.form-area h3 {
+  position: absolute;
+  top: -26px;
+  left: 13px;
+  background: #f6f5f5;
+  padding: 10px 20px;
+  font-weight: 500;
+  z-index: 23;
+  display: inline-block;
+}
+.input-space {
+  margin-bottom: 20px;
+}
+.input-space label {
+  padding-left: 31px;
+  font-size: 14px;
+  margin-bottom: 50px;
+}

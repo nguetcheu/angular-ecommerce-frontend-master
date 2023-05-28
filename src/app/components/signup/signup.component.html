@@ -4,7 +4,7 @@
       <form>
         <!-- Login form -->
         <div class="form-area">
-          <h3 style="margin-left: 400px">Login</h3>
+          <h3 style="margin-left: 400px">Sign Up</h3>
 
           <div class="row">
             <div class="col-md-2"><label>Email</label></div>
@@ -37,14 +37,9 @@
           </div>
 
           <div class="row">
-            <div class="col-md-4">
-              <a routerLink="/signup" style="text-align: none"
-                >Need Account ?</a
-              >
-            </div>
             <div class="col-md-6">
-              <a href="" class="text-dark" style="text-align: none"
-                >Forget password ?</a
+              <a routerLink="/login" style="text-decoration: none"
+                >Have an account ? <span class="text-danger">Login</span></a
               >
             </div>
           </div>
@@ -52,8 +47,8 @@
 
         <!-- Bouton de validation -->
         <div class="text-center">
-          <button type="submit" class="btn btn-info" (click)="login()">
-            Login
+          <button type="submit" class="btn btn-info" (click)="register()">
+            Sign Up
           </button>
         </div>
       </form>
