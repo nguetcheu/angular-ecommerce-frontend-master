@@ -7,8 +7,8 @@ import { AuthService } from 'src/app/services/shared/auth.service';
   styleUrls: ['./login-status.component.css'],
 })
 export class LoginStatusComponent implements OnInit {
-  isAuthenticated = false;
-  userFullName: string = '';
+  userFullName: string;
+  isAuthenticated: any;
 
   constructor(private authService: AuthService) {}
 
@@ -20,7 +20,9 @@ export class LoginStatusComponent implements OnInit {
     return (this.isAuthenticated = this.authService.getIsAuthenticated());
   }
 
-  getUserDetails() {}
+  getUserDetails() {
+    return (this.userFullName = localStorage.getItem('email'));
+  }
 
   logout() {
     this.authService.logout();

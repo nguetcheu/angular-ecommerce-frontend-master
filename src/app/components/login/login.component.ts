@@ -11,24 +11,25 @@ export class LoginComponent implements OnInit {
   password: string = '';
   constructor(private auth: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    localStorage.removeItem('email');
+    localStorage.removeItem('token');
+  }
 
   login() {
-
-    if(this.email == '') {
+    if (this.email == '') {
       alert('Please enter email');
       return;
     }
 
-    if(this.password == '') {
+    if (this.password == '') {
       alert('Please enter password');
       return;
     }
 
-    this.auth.login(this.email,this.password);
-    
+    this.auth.login(this.email, this.password);
+
     this.email = '';
     this.password = '';
-
   }
 }

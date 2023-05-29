@@ -1,6 +1,6 @@
 <div class="login-status-header">
   <button
-    *ngIf="!getAuthentificated()"
+    *ngIf="!getUserDetails()"
     routerLink="/login"
     class="security-btn"
   >
@@ -8,14 +8,16 @@
   </button>
 
   <button
-    *ngIf="!getAuthentificated()"
+    *ngIf="!getUserDetails()"
     routerLink="/signup"
     class="security-btn"
   >
     SignUp
   </button>
-
-  <button *ngIf="getAuthentificated()" routerLink="/login" class="security-btn">
+  <div *ngIf="getUserDetails()" class="login-status-user-info">
+    Welcome back {{ getUserDetails() }}
+  </div>
+  <button *ngIf="getUserDetails()" routerLink="/login" class="security-btn">
     Logout
   </button>
 </div>
