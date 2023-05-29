@@ -31,6 +31,8 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'forgot', component: ForgotPasswordComponent },
+  { path: 'verify-email', component: VerifyEmailComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'cart-details', component: CartDetailsComponent },
   { path: 'products/:id', component: ProductDetailsComponent },
