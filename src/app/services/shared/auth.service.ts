@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   isAuthenticated: boolean = false;
-  
+
   constructor(private fireauth: AngularFireAuth, private router: Router) {}
 
   // login method
@@ -16,11 +16,11 @@ export class AuthService {
       () => {
         this.isAuthenticated = true;
         localStorage.setItem('token', 'true');
-        alert('Connexion réussie');
-        this.router.navigate(['/products']); 
+        alert('Connexion succesful');
+        this.router.navigate(['/products']);
       },
       (err) => {
-        alert('Une erreur est survenue');
+        alert(err.message);
         this.router.navigate(['/login']);
       }
     );
@@ -31,8 +31,8 @@ export class AuthService {
     this.fireauth.createUserWithEmailAndPassword(email, password).then(
       () => {
         this.isAuthenticated = true;
-        alert('Inscription réussie');
-        this.router.navigate(['/products']); 
+        alert('Inscription succesful');
+        this.router.navigate(['/products']);
       },
       (err) => {
         alert(err.message);
@@ -47,10 +47,22 @@ export class AuthService {
       () => {
         this.isAuthenticated = false;
         localStorage.removeItem('token');
-        this.router.navigate(['/products']); 
+        this.router.navigate(['/products']);
       },
       (err) => {
         alert(err.message);
+      }
+    );
+  }
+
+  // forgot password
+  forgotPassword(email: string) {
+    this.fireauth.sendPasswordResetEmail(email).then(
+      () => {
+        this.router.navigate(['/verify-email']);
+      },
+      (err) => {
+        alert('Something went wrong');
       }
     );
   }

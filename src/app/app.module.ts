@@ -23,6 +23,9 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { LoginComponent } from './components/login/login.component';
 import { LoginStatusComponent } from './components/login-status/login-status.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { environment } from 'src/environments/environment';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 
 /*Routes */
 const routes: Routes = [
@@ -41,7 +44,6 @@ const routes: Routes = [
   { path: '', redirectTo: '/products', pathMatch: 'full' },
   { path: '**', redirectTo: '/products', pathMatch: 'full' },
 ];
-import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { environment } from 'src/environments/environment';
     LoginComponent,
     LoginStatusComponent,
     SignupComponent,
+    ForgotPasswordComponent,
+    VerifyEmailComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +68,7 @@ import { environment } from 'src/environments/environment';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [ProductService],
   bootstrap: [AppComponent],
