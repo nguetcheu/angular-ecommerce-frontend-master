@@ -14,6 +14,11 @@ export class ForgotPasswordComponent implements OnInit {
   ngOnInit(): void {}
 
   forgotPassword() {
+    if(this.email == '') {
+      alert('Please enter email');
+      return;
+    }
+
     this.auth.forgotPassword(this.email);
     this.email = '';
   }
