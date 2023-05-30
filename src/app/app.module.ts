@@ -26,6 +26,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { environment } from 'src/environments/environment';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import { MenbersPageComponent } from './components/menbers-page/menbers-page.component';
 
 /*Routes */
 const routes: Routes = [
@@ -62,6 +63,7 @@ const routes: Routes = [
     SignupComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
+    MenbersPageComponent,
   ],
   imports: [
     BrowserModule,
