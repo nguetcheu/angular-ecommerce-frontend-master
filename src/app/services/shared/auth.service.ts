@@ -22,7 +22,6 @@ export class AuthService {
         localStorage.setItem('token', 'true');
         alert('Connexion succesfull');
         localStorage.setItem('email', `${res.user.email}`);
-        localStorage.setItem('userEmail', JSON.stringify(res.user.email));
         this.router.navigate(['/products']);
       },
       (err) => {
@@ -38,8 +37,11 @@ export class AuthService {
       (res) => {
         this.isAuthenticated = true;
         alert('Inscription succesfull');
+
+        // email pour la gestion de la connexion
         localStorage.setItem('email', `${res.user.email}`);
-        this.store.setItem('userEmail', JSON.stringify(res.user.email));
+
+        // redirection
         this.router.navigate(['/products']);
         this.sendEmailForVerification(res.user);
       },
@@ -102,6 +104,8 @@ export class AuthService {
           this.router.navigate(['/products']);
           localStorage.setItem('token', JSON.stringify(res.user?.uid));
           localStorage.setItem('email', `${res.user.email}`);
+          // email pour la gestion du panier
+          this.store.setItem('userEmail', JSON.stringify(res.user.email));
         },
         (err) => {
           alert(err.message);

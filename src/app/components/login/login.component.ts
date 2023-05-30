@@ -9,12 +9,13 @@ import { AuthService } from 'src/app/services/shared/auth.service';
 export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
+  store: Storage = sessionStorage;
   constructor(private auth: AuthService) {}
 
   ngOnInit(): void {
     localStorage.removeItem('email');
     localStorage.removeItem('token');
-    localStorage.removeItem('userEmail');
+    this.store.removeItem('userEmail');
   }
 
   login() {
