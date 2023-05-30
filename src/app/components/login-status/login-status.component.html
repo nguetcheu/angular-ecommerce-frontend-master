@@ -7,13 +7,6 @@
     Login
   </button>
 
-  <button
-    *ngIf="!getUserDetails()"
-    routerLink="/signup"
-    class="security-btn"
-  >
-    SignUp
-  </button>
   <div *ngIf="getUserDetails()" class="login-status-user-info">
     Welcome back {{ getUserDetails() }}
   </div>
