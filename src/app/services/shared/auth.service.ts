@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import firebase from 'firebase/app';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -9,10 +10,7 @@ export class AuthService {
   username: string;
   isAuthenticated: boolean = false;
 
-  constructor(
-    private fireauth: AngularFireAuth,
-    private router: Router,
-  ) {}
+  constructor(private fireauth: AngularFireAuth, private router: Router) {}
 
   // login method
   login(email: string, password: string) {
@@ -92,15 +90,19 @@ export class AuthService {
     );
   }
 
-  removeGmailDomain(email: string) {
-    var domain = '@gmail';
-    var atIndex = email.indexOf(domain);
-
-    if (atIndex !== -1) {
-      var username = email.substring(0, atIndex);
-      return username;
-    }
-
-    return email;
+  //sign in with google
+  googleSignIn() {
+    return this.fireauth
+      .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .then(
+        (res) => {
+          this.router.navigate(['/products']);
+          localStorage.setItem('token', JSON.stringify(res.user?.uid));
+          localStorage.setItem('email', `${res.user.email}`);
+        },
+        (err) => {
+          alert(err.message);
+        }
+      );
   }
 }
