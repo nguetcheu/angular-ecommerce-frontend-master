@@ -34,6 +34,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'forgot', component: ForgotPasswordComponent },
   { path: 'verify-email', component: VerifyEmailComponent },
+  { path: 'menbers', component: MenbersPageComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'cart-details', component: CartDetailsComponent },
   { path: 'products/:id', component: ProductDetailsComponent },
