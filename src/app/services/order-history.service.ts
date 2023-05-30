@@ -6,9 +6,8 @@ import { OrderHistory } from '../common/order-history';
 @Injectable({
   providedIn: 'root'
 })
-export class OrderHistoryServiceService {
-
-  private orderUrl = 'http://localhost:8585/api/orders';
+export class OrderHistoryService {
+  private orderUrl = 'http://localhost:8080/api/orders';
 
   constructor(private httpClient: HttpClient) { }
 
