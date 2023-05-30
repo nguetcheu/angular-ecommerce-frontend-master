@@ -10,6 +10,8 @@ export class AuthService {
   username: string;
   isAuthenticated: boolean = false;
 
+  store: Storage = sessionStorage;
+
   constructor(private fireauth: AngularFireAuth, private router: Router) {}
 
   // login method
@@ -36,8 +38,8 @@ export class AuthService {
         this.isAuthenticated = true;
         alert('Inscription succesfull');
         localStorage.setItem('email', `${res.user.email}`);
+        this.store.setItem('userEmail', JSON.stringify(res.user.email));
         this.router.navigate(['/products']);
-
         this.sendEmailForVerification(res.user);
       },
       (err) => {
