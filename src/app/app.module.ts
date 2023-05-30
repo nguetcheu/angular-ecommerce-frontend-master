@@ -27,6 +27,7 @@ import { environment } from 'src/environments/environment';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { MenbersPageComponent } from './components/menbers-page/menbers-page.component';
+import { AuthGuard } from './guards/auth.guard';
 
 /*Routes */
 const routes: Routes = [
@@ -34,7 +35,11 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'forgot', component: ForgotPasswordComponent },
   { path: 'verify-email', component: VerifyEmailComponent },
-  { path: 'menbers', component: MenbersPageComponent },
+  {
+    path: 'menbers',
+    component: MenbersPageComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'cart-details', component: CartDetailsComponent },
   { path: 'products/:id', component: ProductDetailsComponent },
