@@ -41,6 +41,11 @@ const routes: Routes = [
     component: MenbersPageComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'orders',
+    component: OrderHistoryComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'cart-details', component: CartDetailsComponent },
   { path: 'products/:id', component: ProductDetailsComponent },
