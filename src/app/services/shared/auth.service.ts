@@ -22,6 +22,8 @@ export class AuthService {
         localStorage.setItem('token', 'true');
         alert('Connexion succesfull');
         localStorage.setItem('email', `${res.user.email}`);
+        // email pour la gestion du panier
+        this.store.setItem('userEmail', JSON.stringify(res.user.email));
         this.router.navigate(['/products']);
       },
       (err) => {
