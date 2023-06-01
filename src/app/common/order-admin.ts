@@ -10,4 +10,5 @@ export class OrderAdmin {
   customer: Customer;
   orderItems: OrderItem;
   shippingAddress: Address;
+  lastUpdated: Date;
 }

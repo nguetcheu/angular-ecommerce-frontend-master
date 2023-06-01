@@ -11,6 +11,7 @@
             <th width="5%">Total Price</th>
             <th width="5%">Total Quantity</th>
             <th width="5%">Shipping Address</th>
+            <th width="5%">Order date</th>
           </tr>
 
           <tr *ngFor="let tempOrder of ordersList">
@@ -28,6 +29,9 @@
             </td>
             <td>
               {{ tempOrder.shippingAddress["state"] }}
+            </td>
+            <td>
+              {{ tempOrder.lastUpdated | date }}
             </td>
           </tr>
         </table>
