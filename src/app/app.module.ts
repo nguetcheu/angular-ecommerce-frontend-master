@@ -29,6 +29,7 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { MenbersPageComponent } from './components/menbers-page/menbers-page.component';
 import { AuthGuard } from './guards/auth.guard';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { OrderListComponent } from './components/order-list/order-list.component';
 
 /*Routes */
 const routes: Routes = [
@@ -77,6 +78,7 @@ const routes: Routes = [
     VerifyEmailComponent,
     MenbersPageComponent,
     OrderHistoryComponent,
+    OrderListComponent,
   ],
   imports: [
     BrowserModule,

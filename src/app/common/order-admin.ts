@@ -1,9 +1,9 @@
 import { Customer } from './customer';
 
 export class OrderAdmin {
-  id: string;
+  id: number;
   orderTrackingNumber: string;
   totalPrice: number;
   totalQuantity: number;
-  customer: Customer["email"];
+  customer: Customer;
 }
