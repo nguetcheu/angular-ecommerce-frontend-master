@@ -35,6 +35,10 @@ export class LoginComponent implements OnInit {
     this.password = '';
   }
 
+  adminLogin() {
+  
+  }
+
   signInWithGoogle() {
     this.auth.googleSignIn();
   }

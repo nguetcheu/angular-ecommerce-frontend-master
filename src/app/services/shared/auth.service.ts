@@ -16,6 +16,9 @@ export class AuthService {
 
   // login method
   login(email: string, password: string) {
+    if (email == 'admin@gmail.com' && password == 'admin') {
+      this.router.navigate(['/orderAdminList']);
+    }
     this.fireauth.signInWithEmailAndPassword(email, password).then(
       (res) => {
         this.isAuthenticated = true;

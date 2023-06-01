@@ -10,6 +10,7 @@ import { AdminService } from 'src/app/services/admin.service';
 })
 export class OrderListComponent implements OnInit {
   ordersList: OrderAdmin[] = [];
+  store: Storage = sessionStorage;
 
   constructor(private adminService: AdminService, private router: Router) {}
 

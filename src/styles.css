@@ -224,7 +224,7 @@ section {
 }
 
 .au-input-xl {
-  min-width: 500px;
+  min-width: 100px;
 }
 
 input.au-input.au-input-xl {
