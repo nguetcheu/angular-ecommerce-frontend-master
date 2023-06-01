@@ -1,39 +1,46 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h2>Order List</h2>
-  </div>
-  <div class="panel-body">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>TrackingNumber</th>
-          <th>Total Price</th>
-          <th>Total Quantity</th>
-          <th>Customer</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let order of orders | async">
-          <td>{{ order.id }}</td>
-          <td>{{ order.orderTrackingNumber }}</td>
-          <td>{{ order.totalPrice }}</td>
-          <td>{{ order.totalQuantity }}</td>
-          <td>{{ order.customer["email"] }}</td>
-          <td>
-            <button (click)="deleteOrder(order.id)" class="btn btn-danger">
-              Delete
-            </button>
-            <button
-              (click)="orderDetails(order.id)"
-              class="btn btn-info"
-              style="margin-left: 10px"
-            >
-              Details
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<div class="main-content">
+  <div class="section-content section-content-p30">
+    <div class="container-fluid">
+      <h3>Admin this is all Orders</h3>
+
+      <div *ngIf="ordersList.length > 0">
+        <table class="table table-bordered">
+          <tr>
+            <th width="5%">Customer</th>
+            <th width="5%">Order Tracking Number</th>
+            <th width="5%">Total Price</th>
+            <th width="5%">Total Quantity</th>
+            <th width="5%">Shipping Address</th>
+          </tr>
+
+          <tr *ngFor="let tempOrder of ordersList">
+            <td>
+              {{ tempOrder.customer["email"] }}
+            </td>
+            <td>
+              {{ tempOrder.orderTrackingNumber }}
+            </td>
+            <td>
+              {{ tempOrder.totalPrice | currency : "USD" }}
+            </td>
+            <td>
+              {{ tempOrder.totalQuantity }}
+            </td>
+            <td>
+              {{ tempOrder.shippingAddress["state"] }}
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- if order history is empty then display a message -->
+      <div
+        *ngIf="ordersList.length == 0"
+        class="alert alert-warning col-md-12"
+        role="alert"
+      >
+        No orders found.
+      </div>
+    </div>
   </div>
 </div>

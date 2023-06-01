@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { OrderAdmin } from '../common/order-admin';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,14 @@ export class AdminService {
     return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
   }
 
-  getOrdersList(): Observable<any> {
-    return this.http.get(`${this.baseUrl}`);
+  getOrdersList(): Observable<GetResponseOrderAdmin> {
+    return this.http.get<GetResponseOrderAdmin>(`${this.baseUrl}`);
   }
 }
+
+interface GetResponseOrderAdmin {
+  _embedded: {
+    orders: OrderAdmin[];
+  };
+}
+
