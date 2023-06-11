@@ -47,10 +47,6 @@ const routes: Routes = [
     component: OrderHistoryComponent,
     canActivate: [AuthGuard],
   },
-  {
-    path: 'orderAdminList',
-    component: OrderListComponent,
-  },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'cart-details', component: CartDetailsComponent },
   { path: 'products/:id', component: ProductDetailsComponent },
