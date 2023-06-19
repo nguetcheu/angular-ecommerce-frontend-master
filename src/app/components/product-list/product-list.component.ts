@@ -14,6 +14,7 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
   currentCategoryId: number = 1;
   previousCategoryId: number = 1;
+  currentCategoryName: string = "";
   searchMode: boolean = false;
 
   // new properties for pagination
@@ -78,9 +79,12 @@ export class ProductListComponent implements OnInit {
       // get the "id" param string. convert string to a number using the "+" symbol
       // @ts-ignore: Object is possibly 'null'
       this.currentCategoryId = +this.route.snapshot.paramMap.get('id');
+      // get the "name" param string
+      this.currentCategoryName = this.route.snapshot.paramMap.get('name')!;
     } else {
       // not category id available ... default to category id 1
       this.currentCategoryId = 1;
+      this.currentCategoryName = 'Books';
     }
 
     //

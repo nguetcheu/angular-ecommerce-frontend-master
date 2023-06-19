@@ -1,5 +1,7 @@
 <div class="main-content">
   <div class="section-content section-content-p30">
+    <h4>Category: {{ currentCategoryName }}</h4>
+    <hr />
     <div class="container-fluid">
       <div class="row">
         <!-- loop over the collection of products -->
@@ -16,7 +18,12 @@
             <div class="price">
               {{ tempProduct.unit_price | currency : "USD" }}
             </div>
-            <button (click)="addToCart(tempProduct)" class="btn btn-primary btn-sm">Add to cart</button>
+            <button
+              (click)="addToCart(tempProduct)"
+              class="btn btn-primary btn-sm"
+            >
+              Add to cart
+            </button>
           </div>
         </div>
 
