@@ -138,4 +138,14 @@ export class ProductListComponent implements OnInit {
     const theCartItem = new CartItem(theProduct);
     this.cartService.addToCart(theCartItem);
   }
+
+  // whatsapp fonctionnalité achat
+  message: string = `Bonjour monsieur votre produit `; // Message prédéfini
+
+  openWhatsApp(): void {
+    const phoneNumber = '696886292'; // Numéro de téléphone du destinataire
+    const encodedMessage = encodeURIComponent(this.message);
+    const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+    window.open(url, '_blank');
+  }
 }
