@@ -143,9 +143,9 @@ export class ProductListComponent implements OnInit {
   message: string; // Message prédéfini
 
   openWhatsApp(): void {
-    this.message = `Bonjour monsieur le produit m'intéresse j'aimerais obtenir plus de détails`;
+    this.message = `Bonjour monsieur l'un de vos produit m'intéresse j'aimerais obtenir plus de détails`;
 
-    const phoneNumber = '237696886292'; // Numéro de téléphone du destinataire
+    const phoneNumber = '237694664068'; // Numéro de téléphone du destinataire
     const encodedMessage = encodeURIComponent(this.message);
     const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
     window.open(url, '_blank');
