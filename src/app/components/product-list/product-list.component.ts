@@ -14,7 +14,7 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
   currentCategoryId: number = 1;
   previousCategoryId: number = 1;
-  currentCategoryName: string = "";
+  currentCategoryName: string = '';
   searchMode: boolean = false;
 
   // new properties for pagination
@@ -140,10 +140,12 @@ export class ProductListComponent implements OnInit {
   }
 
   // whatsapp fonctionnalité achat
-  message: string = `Bonjour monsieur votre produit `; // Message prédéfini
+  message: string; // Message prédéfini
 
   openWhatsApp(): void {
-    const phoneNumber = '696886292'; // Numéro de téléphone du destinataire
+    this.message = `Bonjour monsieur le produit m'intéresse j'aimerais obtenir plus de détails`;
+
+    const phoneNumber = '237696886292'; // Numéro de téléphone du destinataire
     const encodedMessage = encodeURIComponent(this.message);
     const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
     window.open(url, '_blank');
